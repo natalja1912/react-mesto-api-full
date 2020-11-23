@@ -27,10 +27,24 @@ module.exports.createCard = async (req, res, next) => {
   }
 };
 
-module.exports.deleteCard = (req, res, next) => {
-  Card.findByIdAndRemove(req.params.cardId)
-    .then((card) => res.send({ data: card }))
-    .catch(next);
+// eslint-disable-next-line consistent-return
+module.exports.deleteCard = async (req, res, next) => {
+  const owner = req.user._id;
+  const id = req.params.cardId;
+  try {
+    const card = await Card.findOne({ _id: id });
+    if (!card) {
+      throw new NotFoundError('Карточка не была найдена, попробуйте еще раз');
+    }
+    if (card.owner.toString() !== owner) {
+      return res.status(409).send('Карточка была создана другим пользователем');
+    }
+    return Card.findByIdAndRemove(req.params.cardId)
+      .then((cardData) => res.send({ data: cardData }))
+      .catch(next);
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports.likeCard = (req, res, next) => {
