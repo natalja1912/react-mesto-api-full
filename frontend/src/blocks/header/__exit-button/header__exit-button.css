@@ -1,0 +1,21 @@
+.header__exit-button{
+    border: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 24px;
+    background-color: transparent;
+    color: #A9A9A9;
+    cursor: pointer;
+    transition: all 0.4s ease-in;
+}
+
+.header__exit-button:hover{
+    color: #e9dede;
+}
+
+@media screen and (max-width: 425px) {
+    .header__exit-button{
+        margin-top: 18px;
+        margin-left: 0;
+    }
+}

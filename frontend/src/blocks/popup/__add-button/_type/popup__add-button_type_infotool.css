@@ -1,0 +1,7 @@
+.popup__add-button_type_infotool{
+    display: none;
+}
+
+.popup__add-button_type_infotool:hover{
+    opacity: 0.85;
+}

@@ -1,0 +1,15 @@
+.popup__container_type_dark{
+    margin-top: 60px;
+    position: static;
+    width: 358px;
+    background-color: transparent;
+    transform: translate(0, 0);
+    padding: 0;
+}
+
+@media screen and (max-width: 420px) {
+    .popup__container_type_dark{
+        width: 100%;
+        padding: 0 30px 0 30px;
+    }
+}

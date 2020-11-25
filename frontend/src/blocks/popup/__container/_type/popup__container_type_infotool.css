@@ -1,0 +1,17 @@
+.popup__container_type_infotool{
+    box-sizing: border-box;
+    padding: 60px 36px;
+    max-width: 430px;
+}
+
+@media screen and (max-width: 470px) {
+    .popup__container_type_infotool{
+        padding: 50px 18px;
+        max-width: 100%;
+        width: calc(100% - 40px);
+        height: auto;
+        top: 130px;
+        left: 0;
+        transform: translate(20px, 0);
+    }
+}

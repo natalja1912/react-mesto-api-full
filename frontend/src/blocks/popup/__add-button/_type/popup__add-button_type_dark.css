@@ -1,0 +1,22 @@
+.popup__add-button_type_dark{
+    margin: 0;
+    background-color: #ffffff;
+    margin-top: 216px;
+    color: #000000;
+}
+
+.popup__add-button_type_dark:hover{
+    opacity: 0.85;
+}
+
+@media screen and (max-width: 1279px) {
+    .popup__add-button_type_dark{
+        margin-top: 173px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .popup__add-button_type_dark{
+        font-size: 16px;
+    }
+}
