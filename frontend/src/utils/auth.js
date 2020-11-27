@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://magic.students.nomoreparties.xyz/';
+export const BASE_URL = 'https://pikachu.students.nomoreparties.xyz/';
 
 export const authorize = (password, email) => {
     return fetch(`${BASE_URL}/signin`, {

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* natalja1912@178.154.228.137:/home/natalja1912/news-frontend",
+    "deploy": "npm run build && scp -r ./build/* natalja1912@178.154.229.170:/home/natalja1912/news-frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -93,7 +93,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://magic.students.nomoreparties.xyz/',
+  baseUrl: 'https://pikachu.students.nomoreparties.xyz/',
   headers: {
   
   }
