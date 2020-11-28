@@ -64,6 +64,7 @@ module.exports.getProfile = async function (req, res, next) {
     throw new AuthError('Пользователь не найден');
   }
   const userId = req.user;
+  console.log(userId);
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -117,7 +118,10 @@ module.exports.createUser = (req, res, next) => {
           if (!userData) {
             throw new NotFoundError('Пользователь не был создан');
           }
-          return res.status(200).send({ _id: userData._id, email: userData.email });
+          const token = jwt.sign({ _id: userData._id }, JWT_SECRET, { expiresIn: '7d' });
+          console.log(token);
+          // eslint-disable-next-line max-len
+          return res.status(200).send({ _id: userData._id, email: userData.email, token: token.toString() });
         })
         .catch((err) => {
           const ERROR_CODE = 400;

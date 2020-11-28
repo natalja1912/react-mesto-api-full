@@ -28,8 +28,8 @@ function Cards(props) {
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, items]) => {
-        setCurrentUser(user);
-        setCards(items);
+        setCurrentUser(user.data);
+        setCards(items.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -39,7 +39,7 @@ function Cards(props) {
  * @param   {object} card  card being clicked
  */
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLike(card._id, !isLiked)
       .then((newCard) => {
@@ -62,7 +62,7 @@ function Cards(props) {
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
-
+ 
   /**
 * open popup that adds new card
 */

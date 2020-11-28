@@ -1,7 +1,15 @@
 class Api {
   constructor(options) {
     this._url = options.baseUrl;
-    this._headers = options.headers;
+  }
+
+  _getHeaders() {
+    const token = localStorage.getItem('jwt'); 
+    console.log(token);
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
   }
 
   _getResponseData = (res) => {
@@ -13,26 +21,32 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers
+      headers: this._getHeaders()
     })
       .then(res => {
         return this._getResponseData(res);
+      })
+      .then((res) => {
+        return res;
       })
   }
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers
+      headers: this._getHeaders()
     })
       .then(res => {
         return this._getResponseData(res);
+      })
+      .then((res) => {
+        return res;
       })
   }
 
   sendUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -41,12 +55,15 @@ class Api {
       .then(res => {
         return this._getResponseData(res);
       })
+      .then((res) => {
+        return res;
+      })
   }
 
   postNewCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -55,32 +72,41 @@ class Api {
       .then(res => {
         return this._getResponseData(res);
       })
+      .then((res) => {
+        return res.data;
+      })
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers
+      headers: this._getHeaders(),
     })
       .then(res => {
         return this._getResponseData(res);
+      })
+      .then((res) => {
+        return res;
       })
   }
 
   changeLike(cardId, isLiked) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
-      headers: this._headers
+      headers: this._getHeaders()
     })
       .then(res => {
         return this._getResponseData(res);
+      })
+      .then((res) => {
+        return res.data;
       })
   }
 
   changeAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: data
       })
@@ -88,15 +114,16 @@ class Api {
       .then(res => {
         return this._getResponseData(res);
       })
+      .then((res) => {
+        return res;
+      })
   }
 
 }
 
 const api = new Api({
-  baseUrl: 'https://pikachu.students.nomoreparties.xyz/',
-  headers: {
-  
-  }
+  baseUrl: 'https://api.pikachu.students.nomoredomains.rocks',
+
 });
 
 export default api;

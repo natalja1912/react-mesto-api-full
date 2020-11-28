@@ -16,7 +16,13 @@
  * NODE JS
 
 ## Ссылка на сайт github pages 
-(https://natalja1912.github.io/mesto-react/)
+https://github.com/natalja1912/react-mesto-auth
+
+## Домен
+https://pikachu.students.nomoredomains.rocks
+
+## IP сервера
+178.154.229.170
 
 ## Что можно улучшить
-Можно добавить в проект новые страницы
+Можно добавить в проект дополнительную функциональность (чат, комментарии пользователей)
