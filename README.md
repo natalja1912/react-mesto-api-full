@@ -16,7 +16,7 @@
  * NODE JS
 
 ## Ссылка на сайт github pages 
-https://github.com/natalja1912/react-mesto-auth
+https://github.com/natalja1912/react-mesto-api-full
 
 ## Домен
 https://pikachu.students.nomoredomains.rocks
