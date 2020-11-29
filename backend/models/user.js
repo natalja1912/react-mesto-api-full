@@ -18,11 +18,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        return /^http[s]?:\/\/\w+\.[\w-.~:/?#[\]@!$&'\\*+,;=]+/.test(v);
+        return /^http[s]?:\/\/\w?\.?[\w-.~:?#[\]@!$&'\\*+,;=]+/.test(v);
       },
       message: 'Ссылка на картинку не валидна',
-      default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     },
+    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
   },
   email: {
     type: String,

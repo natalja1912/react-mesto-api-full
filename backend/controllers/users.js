@@ -11,6 +11,7 @@ const BadRequestError = require('../errors/bad-request');
 
 const SALT_ROUND = 10;
 const { JWT_SECRET } = process.env;
+const opts = { runValidators: true };
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
@@ -43,7 +44,7 @@ module.exports.getUser = (req, res, next) => {
 module.exports.editProfile = async function (req, res, next) {
   const { name, about } = req.body;
   try {
-    const user = await User.findByIdAndUpdate(req.user._id, { name, about });
+    const user = await User.findByIdAndUpdate(req.user._id, { name, about }, opts);
     if (!user) {
       throw new NotFoundError('Изменения не были сохранены, попробуйте еще раз');
     }
@@ -64,7 +65,6 @@ module.exports.getProfile = async function (req, res, next) {
     throw new AuthError('Пользователь не найден');
   }
   const userId = req.user;
-  console.log(userId);
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -80,7 +80,7 @@ module.exports.getProfile = async function (req, res, next) {
 module.exports.editAvatar = async function (req, res, next) {
   const { avatar } = req.body;
   try {
-    const user = await User.findByIdAndUpdate(req.user._id, { avatar });
+    const user = await User.findOneAndUpdate({ _id: req.user._id }, { avatar }, opts);
     if (!user) {
       throw new NotFoundError('Изменения не были сохранены, попробуйте еще раз');
     }
@@ -108,9 +108,6 @@ module.exports.createUser = (req, res, next) => {
       }
       return bcrypt.hash(req.body.password, SALT_ROUND)
         .then((hash) => User.create({
-          name: req.body.email,
-          about: req.body.about,
-          avatar: req.body.avatar,
           email: req.body.email,
           password: hash,
         }))
@@ -119,7 +116,6 @@ module.exports.createUser = (req, res, next) => {
             throw new NotFoundError('Пользователь не был создан');
           }
           const token = jwt.sign({ _id: userData._id }, JWT_SECRET, { expiresIn: '7d' });
-          console.log(token);
           // eslint-disable-next-line max-len
           return res.status(200).send({ _id: userData._id, email: userData.email, token: token.toString() });
         })
