@@ -73,7 +73,7 @@ function App() {
 
     function handleExit() {
         localStorage.removeItem('jwt');
-        history.push('/signup');
+        history.push('/signin');
     }
 
     return (
