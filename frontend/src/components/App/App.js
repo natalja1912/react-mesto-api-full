@@ -82,10 +82,10 @@ function App() {
                 {infoToolActive && <InfoTooltip name={infoToolValues.name} text={infoToolValues.text} isOpen={infoToolValues.active} onClose={infoToolClose} />}
                 <Switch>
                     <ProtectedRoute path="/cards" loggedIn={loggedIn.loggedIn} component={Cards} user={loggedIn.email} handleExit={handleExit} />
-                    <Route path="/signin">
+                    <Route path="/signup">
                         <Register onRegister={(user) => handleRegister(user)} />
                     </Route>
-                    <Route path="/signup">
+                    <Route path="/signin">
                         <Login onLogin={(user) => handleLogin(user)} />
                     </Route>
                     <Route exact path="/">

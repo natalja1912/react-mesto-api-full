@@ -28,7 +28,7 @@ function Register(props) {
     return (
         <>
             <Header>
-                <Link to="/signup" className="header__item header__link">Войти</Link>
+                <Link to="/signin" className="header__item header__link">Войти</Link>
             </Header>
             <div className="register">
                 <PopupWithForm name="dark" isOpen={true} title="Регистрация" buttonText="Зарегистрироваться" onSubmit={(e) => handleSubmit(e)}>
@@ -36,7 +36,7 @@ function Register(props) {
                     <input className="popup__input popup__input_dark" name="password" placeholder="Пароль" required id="password" type="password" value={inputValues.password} onChange={(e) => handleChange(e)} />
                 </PopupWithForm>
                 <div className="register__signup">
-                    <Link to="/signup" className="register__link">Уже зарегистрированы? Войти</Link>
+                    <Link to="/signin" className="register__link">Уже зарегистрированы? Войти</Link>
                 </div>
             </div>
         </>

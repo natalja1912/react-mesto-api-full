@@ -29,7 +29,7 @@ function Login(props) {
     return (
         <>
             <Header>
-                <Link to="/signin" className="header__item header__link">Регистрация</Link>
+                <Link to="/signup" className="header__item header__link">Регистрация</Link>
             </Header>
             <div className="register register_type_login">
                 <PopupWithForm name="dark" title="Вход" buttonText="Войти" isOpen={true} onSubmit={(e) => handleSubmit(e)}>

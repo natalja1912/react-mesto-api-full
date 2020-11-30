@@ -37,7 +37,7 @@ module.exports.deleteCard = async (req, res, next) => {
       throw new NotFoundError('Карточка не была найдена, попробуйте еще раз');
     }
     if (card.owner.toString() !== owner) {
-      return res.status(409).send('Карточка была создана другим пользователем');
+      return res.status(409).send({ message: 'Карточка была создана другим пользователем' });
     }
     return Card.findByIdAndRemove(req.params.cardId)
       .then((cardData) => res.send({ data: cardData }))
@@ -53,7 +53,12 @@ module.exports.likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
-    .then((card) => res.send({ data: card }))
+    .then((card) => {
+      if (!card) {
+        return res.status(404).send({ message: 'Карточка не была найдена, попробуйте еще раз' });
+      }
+      return res.status(200).send({ data: card });
+    })
     .catch(next);
 };
 
@@ -63,6 +68,11 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
-    .then((card) => res.send({ data: card }))
+    .then((card) => {
+      if (!card) {
+        return res.status(404).send({ message: 'Карточка не была найдена, попробуйте еще раз' });
+      }
+      return res.status(200).send({ data: card });
+    })
     .catch(next);
 };

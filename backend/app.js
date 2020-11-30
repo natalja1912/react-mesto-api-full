@@ -11,7 +11,7 @@ const routes = require('./routes/index');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 
-const { PORT } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,17 +28,20 @@ app.use(requestLogger);
 
 app.use(cors());
 
-app.post('/signin', celebrate({
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(2),
   }),
 }), createUser);
 
-app.post('/signup', celebrate({
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(2),
+    name: Joi.string().required().min(2),
+    about: Joi.string().required().min(2),
+    avatar: Joi.string().required(),
   }),
 }), login);
 
