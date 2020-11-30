@@ -21,6 +21,9 @@ https://github.com/natalja1912/react-mesto-api-full
 ## Домен
 https://pikachu.students.nomoredomains.rocks
 
+## Доменное имя сервера
+https://api.pikachu.students.nomoredomains.rocks
+
 ## IP сервера
 178.154.229.170
 
