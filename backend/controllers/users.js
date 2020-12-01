@@ -110,6 +110,9 @@ module.exports.createUser = (req, res, next) => {
         .then((hash) => User.create({
           email: req.body.email,
           password: hash,
+          name: req.body.name,
+          about: req.body.about,
+          avatar: req.body.avatar,
         }))
         .then((userData) => {
           if (!userData) {
@@ -117,7 +120,7 @@ module.exports.createUser = (req, res, next) => {
           }
           const token = jwt.sign({ _id: userData._id }, JWT_SECRET, { expiresIn: '7d' });
           // eslint-disable-next-line max-len
-          return res.status(200).send({ _id: userData._id, email: userData.email, token: token.toString() });
+          return res.status(200).send({ userData, token: token.toString() });
         })
         .catch((err) => {
           const ERROR_CODE = 400;
