@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, handleCardLike, handleCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
-
+  const sortedCards = cards.sort((a, b) => a._id < b._id ? 1 : -1);
 
   return (
     <main className="content">
@@ -20,7 +20,7 @@ function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, han
         <button className="cover__add" onClick={onAddPlace} aria-label="Добавить" type="button"></button>
       </section>
       <section className="places">
-        {cards.map((item) => (<Card key={item._id} card={item} handleCard={onCardClick} handleCardLike={(card) => handleCardLike(card)} handleCardDelete={(card) => handleCardDelete(card)} />))}
+        {sortedCards.map((item) => (<Card key={item._id} card={item} handleCard={onCardClick} handleCardLike={(card) => handleCardLike(card)} handleCardDelete={(card) => handleCardDelete(card)} />))}
       </section>
     </main>
   );
