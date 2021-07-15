@@ -15,17 +15,4 @@
  * React JS
  * NODE JS
 
-## Ссылка на сайт github pages 
-https://github.com/natalja1912/react-mesto-api-full
 
-## Домен
-https://pikachu.students.nomoredomains.rocks
-
-## Доменное имя сервера
-https://api.pikachu.students.nomoredomains.rocks
-
-## IP сервера
-178.154.229.170
-
-## Что можно улучшить
-Можно добавить в проект дополнительную функциональность (чат, комментарии пользователей)
